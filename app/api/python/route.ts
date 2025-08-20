@@ -3,6 +3,7 @@ import { exec } from "child_process"
 import { promisify } from "util"
 import fs from "fs/promises"
 import path from "path"
+import os from "os"
 import { v4 as uuidv4 } from "uuid"
 
 const execAsync = promisify(exec)
@@ -15,9 +16,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid code provided" }, { status: 400 })
     }
 
-    // Create a temporary file with unique name
-    const tempDir = path.join(process.cwd(), "temp")
-    await fs.mkdir(tempDir, { recursive: true })
+    // Use system temp directory instead of project directory
+    const tempDir = os.tmpdir()
+    // No need to create tmpdir as it always exists
     
     const filename = `temp_${uuidv4()}.py`
     const filepath = path.join(tempDir, filename)

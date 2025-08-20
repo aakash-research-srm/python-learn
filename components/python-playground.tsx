@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -10,31 +10,83 @@ interface PythonPlaygroundProps {
   description?: string
 }
 
+// Declare global pyodide
+declare global {
+  interface Window {
+    loadPyodide: any;
+  }
+}
+
 export function PythonPlayground({ title = "Python Playground", initialCode = "print('Hello, World!')", description }: PythonPlaygroundProps) {
   const [code, setCode] = useState(initialCode)
   const [output, setOutput] = useState("")
   const [loading, setLoading] = useState(false)
+  const [pyodideReady, setPyodideReady] = useState(false)
+  const pyodideRef = useRef<any>(null)
+
+  useEffect(() => {
+    // Load Pyodide
+    const loadPyodide = async () => {
+      try {
+        // Load Pyodide script
+        if (!window.loadPyodide) {
+          const script = document.createElement('script')
+          script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js'
+          script.onload = async () => {
+            pyodideRef.current = await window.loadPyodide()
+            // Redirect stdout to capture print statements
+            pyodideRef.current.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`)
+            setPyodideReady(true)
+          }
+          document.head.appendChild(script)
+        } else {
+          pyodideRef.current = await window.loadPyodide()
+          pyodideRef.current.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`)
+          setPyodideReady(true)
+        }
+      } catch (error) {
+        console.error('Failed to load Pyodide:', error)
+        setOutput('Error: Failed to load Python interpreter')
+      }
+    }
+
+    loadPyodide()
+  }, [])
 
   async function runCode() {
+    if (!pyodideReady || !pyodideRef.current) {
+      setOutput('Error: Python interpreter not ready')
+      return
+    }
+
     setLoading(true)
     setOutput("")
     
     try {
-      const response = await fetch("/api/python", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
-      })
+      // Reset stdout
+      pyodideRef.current.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`)
       
-      const data = await response.json()
+      // Run user code
+      pyodideRef.current.runPython(code)
       
-      if (data.error) {
-        setOutput(`Error: ${data.error}`)
-      } else {
-        setOutput(data.output || "Code executed successfully (no output)")
-      }
-    } catch (error) {
-      setOutput(`Network Error: ${error instanceof Error ? error.message : "Failed to execute code"}`)
+      // Get the output
+      const stdout = pyodideRef.current.runPython('sys.stdout.getvalue()')
+      
+      setOutput(stdout || "Code executed successfully (no output)")
+    } catch (error: any) {
+      setOutput(`Error: ${error.message || 'Unknown error occurred'}`)
     }
     
     setLoading(false)
@@ -45,7 +97,10 @@ export function PythonPlayground({ title = "Python Playground", initialCode = "p
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">{title}</CardTitle>
-          <Badge variant="outline" className="font-mono text-xs">python</Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className="font-mono text-xs">python</Badge>
+            {pyodideReady && <Badge variant="outline" className="text-xs bg-green-100 text-green-800">Ready</Badge>}
+          </div>
         </div>
         {description && <p className="text-sm text-muted-foreground">{description}</p>}
       </CardHeader>
@@ -56,8 +111,8 @@ export function PythonPlayground({ title = "Python Playground", initialCode = "p
           onChange={e => setCode(e.target.value)}
           placeholder="Enter your Python code here..."
         />
-        <Button onClick={runCode} disabled={loading} className="mb-3">
-          {loading ? "Running..." : "▶ Run Python Code"}
+        <Button onClick={runCode} disabled={loading || !pyodideReady} className="mb-3">
+          {!pyodideReady ? "Loading Python..." : loading ? "Running..." : "▶ Run Python Code"}
         </Button>
         {output && (
           <div className="border border-slate-800 rounded-lg overflow-hidden">

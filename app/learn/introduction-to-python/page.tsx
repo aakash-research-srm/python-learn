@@ -1,72 +1,88 @@
-import { ModuleContent, ContentSection, CodeExample, Highlight } from "@/components/module-content"
+import { ModuleContent } from "@/components/module-content"
+import { CodeExample } from "@/components/code-example"
 import { Quiz } from "@/components/quiz"
 import { quizData } from "@/lib/quiz-data"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 const IntroductionToPythonPage = () => {
   return (
-    <div className="container mx-auto  max-w-4xl lg:px-8">
-      <ModuleContent title="Introduction to Python">
-        <ContentSection title="What is Python?">
-          <p>
-            <Highlight>Python</Highlight> is a{" "}
-            <Highlight variant="accent">high-level, interpreted programming language</Highlight> known for its
-            simplicity and readability. Created by Guido van Rossum and first released in 1991, Python emphasizes{" "}
-            <Highlight variant="success">code readability</Highlight> and allows programmers to express concepts in
-            fewer lines of code.
-          </p>
-          <p>
-            Python is widely used in <Highlight>web development</Highlight>, <Highlight>data science</Highlight>,{" "}
-            <Highlight>artificial intelligence</Highlight>, <Highlight>automation</Highlight>, and many other fields due
-            to its versatility and extensive library ecosystem.
-          </p>
-        </ContentSection>
+    <ModuleContent
+      title="Introduction to Python"
+    >
+      <div className="space-y-8">
+        <Card className="border-primary/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              What is Python?
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Python is a <span className="bg-muted px-2 py-1 rounded font-mono">high-level, interpreted programming language</span> known for its
+              simplicity and readability. Created by Guido van Rossum and first released in 1991, Python emphasizes{" "}
+              <span className="bg-muted px-2 py-1 rounded font-mono">code readability</span> and allows programmers to express concepts in
+              fewer lines of code.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Python is widely used in <span className="bg-muted px-2 py-1 rounded font-mono">web development</span>, <span className="bg-muted px-2 py-1 rounded font-mono">data science</span>,{" "}
+              <span className="bg-muted px-2 py-1 rounded font-mono">artificial intelligence</span>, <span className="bg-muted px-2 py-1 rounded font-mono">automation</span>, and many other fields due
+              to its versatility and extensive library ecosystem.
+            </p>
+          </CardContent>
+        </Card>
 
-        <ContentSection title="Key Features of Python">
-          <ul className="list-disc pl-6 space-y-2">
-            <li>
-              <strong>
-                <Highlight variant="success">Easy to Learn:</Highlight>
-              </strong>{" "}
-              Simple syntax that resembles natural language
-            </li>
-            <li>
-              <strong>
-                <Highlight variant="success">Interpreted:</Highlight>
-              </strong>{" "}
-              No need to compile code before running
-            </li>
-            <li>
-              <strong>
-                <Highlight variant="success">Cross-platform:</Highlight>
-              </strong>{" "}
-              Runs on Windows, macOS, Linux, and more
-            </li>
-            <li>
-              <strong>
-                <Highlight variant="success">Extensive Libraries:</Highlight>
-              </strong>{" "}
-              Rich ecosystem of third-party packages
-            </li>
-            <li>
-              <strong>
-                <Highlight variant="success">Community Support:</Highlight>
-              </strong>{" "}
-              Large, active community of developers
-            </li>
-          </ul>
-        </ContentSection>
+        <Card className="border-secondary/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+              Key Features of Python
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <h4 className="font-semibold text-secondary">Language Features</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">Easy to Learn</Badge> Simple syntax that resembles natural language
+                  </li>
+                  <li>
+                    <Badge variant="outline">Interpreted</Badge> No need to compile code before running
+                  </li>
+                  <li>
+                    <Badge variant="outline">Cross-platform</Badge> Runs on Windows, macOS, Linux, and more
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="font-semibold text-secondary">Ecosystem</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">Extensive Libraries</Badge> Rich ecosystem of third-party packages
+                  </li>
+                  <li>
+                    <Badge variant="outline">Community Support</Badge> Large, active community of developers
+                  </li>
+                  <li>
+                    <Badge variant="outline">Open Source</Badge> Free to use and modify
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <CodeExample
           title="Your First Python Program"
-          description="The traditional 'Hello, World!' program in Python"
           code={`# This is a comment in Python
 print("Hello, World!")
 print("Welcome to Python programming!")`}
+          language="python"
         />
 
         <CodeExample
           title="Basic Python Syntax"
-          description="Examples of Python's clean and readable syntax"
           code={`# Variables and basic operations
 name = "Alice"
 age = 25
@@ -79,45 +95,40 @@ print(message)
 # Simple calculation
 area = 3.14 * (5 ** 2)  # π * r²
 print(f"Area of circle: {area}")`}
+          language="python"
         />
 
-        <ContentSection title="Python Applications">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <h4 className="font-semibold mb-2">
-                <Highlight>Web Development</Highlight>
-              </h4>
-              <p className="text-sm text-muted-foreground">Django, Flask, FastAPI</p>
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+              Python Applications
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <h4 className="font-semibold text-accent">Web Development</h4>
+                <p className="text-sm text-muted-foreground">Django, Flask, FastAPI</p>
+              </div>
+              <div className="space-y-3">
+                <h4 className="font-semibold text-accent">Data Science</h4>
+                <p className="text-sm text-muted-foreground">NumPy, Pandas, Matplotlib</p>
+              </div>
+              <div className="space-y-3">
+                <h4 className="font-semibold text-accent">Machine Learning</h4>
+                <p className="text-sm text-muted-foreground">TensorFlow, PyTorch, Scikit-learn</p>
+              </div>
+              <div className="space-y-3">
+                <h4 className="font-semibold text-accent">Automation</h4>
+                <p className="text-sm text-muted-foreground">Scripting, Testing, DevOps</p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-semibold mb-2">
-                <Highlight>Data Science</Highlight>
-              </h4>
-              <p className="text-sm text-muted-foreground">NumPy, Pandas, Matplotlib</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">
-                <Highlight>Machine Learning</Highlight>
-              </h4>
-              <p className="text-sm text-muted-foreground">TensorFlow, PyTorch, Scikit-learn</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">
-                <Highlight>Automation</Highlight>
-              </h4>
-              <p className="text-sm text-muted-foreground">Scripting, Testing, DevOps</p>
-            </div>
-          </div>
-        </ContentSection>
+          </CardContent>
+        </Card>
 
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-            Test Your Knowledge
-          </h2>
-          <Quiz moduleId="introduction-to-python" questions={quizData["introduction-to-python"]} />
-        </div>
-      </ModuleContent>
-    </div>
+        <Quiz moduleId="introduction-to-python" questions={quizData["introduction-to-python"]} />
+      </div>
+    </ModuleContent>
   )
 }
 

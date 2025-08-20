@@ -9,7 +9,6 @@ const NumpyPandasPage = () => {
   return (
     <ModuleContent
       title="NumPy & Pandas"
-      description="Explore powerful libraries for numerical computing and data analysis in Python."
     >
       <div className="space-y-8">
         <Card className="border-primary/20">

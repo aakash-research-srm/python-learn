@@ -7,11 +7,9 @@ import { Badge } from "@/components/ui/badge"
 
 const OperatorsControlFlowPage = () => {
   return (
-    <div className="container mx-auto max-w-4xl lg:px-8">
-      <ModuleContent
-        title="Operators & Control Flow"
-        description="Master Python operators and control flow structures to make decisions and control program execution."
-      >
+    <ModuleContent
+      title="Operators & Control Flow"
+    >
         <div className="space-y-8">
           <Card className="border-primary/20">
             <CardHeader>
@@ -184,9 +182,8 @@ else:
           </Card>
 
           <Quiz moduleId="operators-control-flow" questions={quizData["operators-control-flow"]} />
-        </div>
-      </ModuleContent>
-    </div>
+      </div>
+    </ModuleContent>
   )
 }
 

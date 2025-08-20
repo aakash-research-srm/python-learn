@@ -9,7 +9,6 @@ const DataStructuresPage = () => {
   return (
     <ModuleContent
       title="Data Structures"
-      description="Master Python's built-in data structures: lists, tuples, dictionaries, and sets for efficient data organization."
     >
       <div className="space-y-8">
         <Card className="border-primary/20">

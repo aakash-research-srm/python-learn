@@ -1,39 +1,77 @@
-import { ModuleContent, ContentSection, CodeExample, Highlight, PythonPlayground } from "@/components/module-content"
+import { ModuleContent } from "@/components/module-content"
+import { CodeExample } from "@/components/code-example"
+import { PythonPlayground } from "@/components/python-playground"
 import { Quiz } from "@/components/quiz"
 import { quizData } from "@/lib/quiz-data"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 const SyntaxVariablesDataTypesPage = () => {
   return (
-    <div className="container mx-auto max-w-4xl lg:px-8">
-      <ModuleContent title="Syntax, Variables & Data Types">
-        <ContentSection title="Try Python Yourself!">
-          <PythonPlayground description="Experiment with Python code and see the output instantly!" />
-        </ContentSection>
-        <ContentSection title="Python Syntax Basics">
-          <p>
-            Python syntax is designed to be <Highlight>readable and intuitive</Highlight>. Unlike many programming
-            languages, Python uses <Highlight variant="accent">indentation</Highlight> to define code blocks instead of
-            curly braces.
-          </p>
-          <ul className="list-disc pl-6 space-y-2 mt-4">
-            <li>
-              <strong>Indentation:</strong> Use 4 spaces (or 1 tab) for each level
-            </li>
-            <li>
-              <strong>Case Sensitive:</strong> <code>Variable</code> and <code>variable</code> are different
-            </li>
-            <li>
-              <strong>Comments:</strong> Use <code>#</code> for single-line comments
-            </li>
-            <li>
-              <strong>Line Continuation:</strong> Use <code>\</code> to continue long lines
-            </li>
-          </ul>
-        </ContentSection>
+    <ModuleContent
+      title="Syntax, Variables & Data Types"
+    >
+      <div className="space-y-8">
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+              Try Python Yourself!
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <PythonPlayground description="Experiment with Python code and see the output instantly!" />
+          </CardContent>
+        </Card>
+
+        <Card className="border-primary/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Python Syntax Basics
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Python syntax is designed to be <span className="bg-muted px-2 py-1 rounded font-mono">readable and intuitive</span>. Unlike many programming
+              languages, Python uses <span className="bg-muted px-2 py-1 rounded font-mono">indentation</span> to define code blocks instead of
+              curly braces.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <h4 className="font-semibold text-primary">Syntax Rules</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">Indentation</Badge> Use 4 spaces (or 1 tab) for each level
+                  </li>
+                  <li>
+                    <Badge variant="outline">Case Sensitive</Badge> Variable and variable are different
+                  </li>
+                  <li>
+                    <Badge variant="outline">Comments</Badge> Use # for single-line comments
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="font-semibold text-primary">Code Structure</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">Line Continuation</Badge> Use \ to continue long lines
+                  </li>
+                  <li>
+                    <Badge variant="outline">No Semicolons</Badge> Line breaks separate statements
+                  </li>
+                  <li>
+                    <Badge variant="outline">Colon</Badge> Starts code blocks
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <CodeExample
           title="Python Indentation Example"
-          description="How Python uses indentation to structure code"
           code={`# Correct indentation
 if 5 > 3:
     print("Five is greater than three")
@@ -42,181 +80,263 @@ if 5 > 3:
     print("This is still inside the first if")
 
 print("This is outside the if block")`}
+          language="python"
         />
 
-        <ContentSection title="Variables in Python">
-          <p>
-            Variables in Python are <Highlight>containers for storing data values</Highlight>. Python has no command for
-            declaring a variable - you create one the moment you first assign a value to it.
-          </p>
-          <div className="bg-muted p-4 rounded-lg mt-4">
-            <h4 className="font-semibold mb-2">Variable Naming Rules:</h4>
-            <ul className="list-disc pl-6 space-y-1 text-sm">
-              <li>Must start with a letter or underscore</li>
-              <li>Cannot start with a number</li>
-              <li>Can only contain alphanumeric characters and underscores</li>
-              <li>
-                Cannot be Python keywords (like <code>if</code>, <code>for</code>, <code>while</code>)
-              </li>
-            </ul>
-          </div>
-        </ContentSection>
+        <Card className="border-secondary/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+              Variables in Python
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Variables in Python are <span className="bg-muted px-2 py-1 rounded font-mono">containers for storing data values</span>. Python has no command for
+              declaring a variable - you create one the moment you first assign a value to it.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <h4 className="font-semibold text-secondary">Variable Rules</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• Must start with a letter or underscore</li>
+                  <li>• Can contain letters, numbers, and underscores</li>
+                  <li>• Case-sensitive (age, Age, AGE are different)</li>
+                  <li>• Cannot use Python keywords</li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="font-semibold text-secondary">Naming Conventions</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• Use snake_case for variables</li>
+                  <li>• Use descriptive names</li>
+                  <li>• Avoid single letters (except for loops)</li>
+                  <li>• Constants in UPPER_CASE</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <CodeExample
-          title="Variable Assignment"
-          description="Different ways to create and assign variables"
-          code={`# Simple variable assignment
+          title="Variable Examples"
+          code={`# Valid variable names
 name = "Alice"
 age = 25
-height = 5.6
 is_student = True
+user_score = 95.5
+_private_var = "hidden"
+
+# Invalid variable names (these will cause errors)
+# 2name = "Bob"        # Cannot start with number
+# user-score = 85      # Cannot use hyphens
+# class = "Python"     # Cannot use keywords
+
+# Variable assignment and reassignment
+x = 10
+print(f"x = {x}")
+x = "Now I'm a string!"
+print(f"x = {x}")
 
 # Multiple assignment
-x, y, z = 1, 2, 3
+a, b, c = 1, 2, 3
+print(f"a={a}, b={b}, c={c}")
 
 # Same value to multiple variables
-a = b = c = 10
-
-# Variable reassignment
-score = 85
-score = 92  # score is now 92
-
-print(f"Name: {name}, Age: {age}, Height: {height}")`}
+x = y = z = 0
+print(f"x={x}, y={y}, z={z}")`}
+          language="python"
         />
 
-        <ContentSection title="Python Data Types">
-          <p>
-            Python has several built-in data types. The type of a variable is determined automatically when you assign a
-            value to it.
-          </p>
-          <div className="grid md:grid-cols-2 gap-4 mt-4">
-            <div className="bg-card p-4 rounded-lg border">
-              <h4 className="font-semibold mb-2">
-                <Highlight>Numeric Types</Highlight>
-              </h4>
-              <ul className="text-sm space-y-1">
-                <li>
-                  <code>int</code> - Integers (42, -17, 0)
-                </li>
-                <li>
-                  <code>float</code> - Decimals (3.14, -2.5)
-                </li>
-                <li>
-                  <code>complex</code> - Complex numbers (3+4j)
-                </li>
-              </ul>
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+              Python Data Types
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Python has several built-in data types to store different kinds of information. The type of a variable is
+              determined automatically when you assign a value.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <h4 className="font-semibold text-accent">Numeric Types</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">int</Badge> Whole numbers: 42, -10, 0
+                  </li>
+                  <li>
+                    <Badge variant="outline">float</Badge> Decimal numbers: 3.14, -2.5
+                  </li>
+                  <li>
+                    <Badge variant="outline">complex</Badge> Complex numbers: 3+4j
+                  </li>
+                </ul>
+
+                <h4 className="font-semibold text-accent mt-4">Text Type</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">str</Badge> Text strings: "Hello", 'Python'
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="font-semibold text-accent">Boolean Type</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">bool</Badge> True or False values
+                  </li>
+                </ul>
+
+                <h4 className="font-semibold text-accent mt-4">Sequence Types</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">list</Badge> Ordered, mutable: [1, 2, 3]
+                  </li>
+                  <li>
+                    <Badge variant="outline">tuple</Badge> Ordered, immutable: (1, 2, 3)
+                  </li>
+                  <li>
+                    <Badge variant="outline">dict</Badge> Key-value pairs: {`{"a": 1}`}
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="bg-card p-4 rounded-lg border">
-              <h4 className="font-semibold mb-2">
-                <Highlight>Text Type</Highlight>
-              </h4>
-              <ul className="text-sm space-y-1">
-                <li>
-                  <code>str</code> - Strings ("Hello", 'World')
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card p-4 rounded-lg border">
-              <h4 className="font-semibold mb-2">
-                <Highlight>Boolean Type</Highlight>
-              </h4>
-              <ul className="text-sm space-y-1">
-                <li>
-                  <code>bool</code> - True or False
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card p-4 rounded-lg border">
-              <h4 className="font-semibold mb-2">
-                <Highlight>Sequence Types</Highlight>
-              </h4>
-              <ul className="text-sm space-y-1">
-                <li>
-                  <code>list</code> - Ordered, mutable
-                </li>
-                <li>
-                  <code>tuple</code> - Ordered, immutable
-                </li>
-                <li>
-                  <code>range</code> - Sequence of numbers
-                </li>
-              </ul>
-            </div>
-          </div>
-        </ContentSection>
+          </CardContent>
+        </Card>
 
         <CodeExample
           title="Data Types Examples"
-          description="Examples of different Python data types"
           code={`# Numeric types
 integer_num = 42
 float_num = 3.14159
 complex_num = 3 + 4j
+
+print(f"Integer: {integer_num}, type: {type(integer_num)}")
+print(f"Float: {float_num}, type: {type(float_num)}")
+print(f"Complex: {complex_num}, type: {type(complex_num)}")
 
 # String type
 text = "Hello, Python!"
 multiline = """This is a
 multiline string"""
 
+print(f"String: {text}, type: {type(text)}")
+
 # Boolean type
 is_python_fun = True
 is_difficult = False
 
-# Sequence types
-my_list = [1, 2, 3, "four", 5.0]
-my_tuple = (1, 2, 3)
-my_range = range(5)  # 0, 1, 2, 3, 4
+print(f"Boolean: {is_python_fun}, type: {type(is_python_fun)}")
 
-# Check data types
-print(type(integer_num))  # <class 'int'>
-print(type(text))         # <class 'str'>
-print(type(my_list))      # <class 'list'>`}
+# Sequence types
+my_list = [1, 2, 3, "mixed", True]
+my_tuple = (1, 2, 3)
+my_dict = {"name": "Alice", "age": 25}
+
+print(f"List: {my_list}, type: {type(my_list)}")
+print(f"Tuple: {my_tuple}, type: {type(my_tuple)}")
+print(f"Dictionary: {my_dict}, type: {type(my_dict)}")
+
+# Checking types
+print(f"\\nType checking:")
+print(f"Is integer_num an int? {isinstance(integer_num, int)}")
+print(f"Is text a string? {isinstance(text, str)}")
+print(f"Is my_list a list? {isinstance(my_list, list)}")`}
+          language="python"
         />
 
-        <ContentSection title="Type Conversion">
-          <p>
-            Sometimes you need to convert between different data types. Python provides built-in functions for{" "}
-            <Highlight variant="success">type conversion</Highlight>.
-          </p>
-        </ContentSection>
+        <Card className="border-primary/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Type Conversion
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Sometimes you need to convert one data type to another. This process is called{" "}
+              <span className="bg-muted px-2 py-1 rounded font-mono">type conversion</span> or <span className="bg-muted px-2 py-1 rounded font-mono">type casting</span>.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <h4 className="font-semibold text-primary">Common Conversions</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Badge variant="outline">int()</Badge> Convert to integer
+                  </li>
+                  <li>
+                    <Badge variant="outline">float()</Badge> Convert to float
+                  </li>
+                  <li>
+                    <Badge variant="outline">str()</Badge> Convert to string
+                  </li>
+                  <li>
+                    <Badge variant="outline">bool()</Badge> Convert to boolean
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="font-semibold text-primary">Important Notes</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• Not all conversions are possible</li>
+                  <li>• May lose precision (float to int)</li>
+                  <li>• Empty values become False</li>
+                  <li>• Non-empty values become True</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <CodeExample
           title="Type Conversion Examples"
-          description="Converting between different data types"
           code={`# String to number conversion
 age_str = "25"
 age_int = int(age_str)
-print(f"Age as integer: {age_int}")
+price_str = "19.99"
+price_float = float(price_str)
+
+print(f"String '{age_str}' to int: {age_int}")
+print(f"String '{price_str}' to float: {price_float}")
 
 # Number to string conversion
-score = 95.5
-score_str = str(score)
-print(f"Score as string: '{score_str}'")
-
-# Float to integer (truncates decimal)
-pi = 3.14159
-pi_int = int(pi)  # Result: 3
+number = 42
+number_str = str(number)
+print(f"Number {number} to string: '{number_str}'")
 
 # Boolean conversions
-print(bool(1))      # True
-print(bool(0))      # False
-print(bool(""))     # False (empty string)
-print(bool("Hi"))   # True (non-empty string)
+print(f"\\nBoolean conversions:")
+print(f"bool(1): {bool(1)}")
+print(f"bool(0): {bool(0)}")
+print(f"bool('hello'): {bool('hello')}")
+print(f"bool(''): {bool('')}")
+print(f"bool([1, 2, 3]): {bool([1, 2, 3])}")
+print(f"bool([]): {bool([])}")
 
-# List to tuple and vice versa
-my_list = [1, 2, 3]
-my_tuple = tuple(my_list)
-back_to_list = list(my_tuple)`}
+# Float to int (loses decimal part)
+pi = 3.14159
+pi_int = int(pi)
+print(f"\\nFloat {pi} to int: {pi_int}")
+
+# Automatic type conversion in operations
+result = 10 + 3.5  # int + float = float
+print(f"10 + 3.5 = {result} (type: {type(result)})")
+
+# Input always returns string
+# user_input = input("Enter a number: ")
+# number = int(user_input)  # Convert to int for math operations`}
+          language="python"
         />
 
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-            Test Your Knowledge
-          </h2>
-          <Quiz moduleId="syntax-variables-data-types" questions={quizData["syntax-variables-data-types"]} />
-        </div>
-      </ModuleContent>
-    </div>
+        <Quiz moduleId="syntax-variables-data-types" questions={quizData["syntax-variables-data-types"]} />
+      </div>
+    </ModuleContent>
   )
 }
 

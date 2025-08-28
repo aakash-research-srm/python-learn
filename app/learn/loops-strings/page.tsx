@@ -1,15 +1,14 @@
-import { ModuleContent } from "@/components/module-content"
-import { CodeExample } from "@/components/code-example"
-import { Quiz } from "@/components/quiz"
-import { quizData } from "@/lib/quiz-data"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { ModuleContent, PythonPlayground } from "@/components/module-content";
+import { CodeExample } from "@/components/code-example";
+import { Quiz } from "@/components/quiz";
+import { quizData } from "@/lib/quiz-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const LoopsStringsPage = () => {
   return (
     <ModuleContent
       title="Loops & Strings"
-      description="Learn to repeat code efficiently with loops and manipulate text data with Python strings."
     >
       <div className="space-y-8">
         <Card className="border-primary/20">
@@ -18,57 +17,91 @@ const LoopsStringsPage = () => {
               Python Loops
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-muted-foreground leading-relaxed">
-              Loops allow you to execute a block of code repeatedly. Python provides two main types of loops:
-              <span className="bg-muted px-2 py-1 rounded font-mono">for</span> loops and
-              <span className="bg-muted px-2 py-1 rounded font-mono">while</span> loops.
+        </Card>
+        {/* Playground: Practice While Loop */}
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-lg">
+              Try it Yourself! (While Loop)
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-2 text-muted-foreground">
+              Change the starting value and see the countdown.
             </p>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <h4 className="font-semibold text-primary">For Loops</h4>
-                <p className="text-sm text-muted-foreground">
-                  Used when you know how many times you want to repeat something or when iterating over a sequence.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="font-semibold text-primary">While Loops</h4>
-                <p className="text-sm text-muted-foreground">
-                  Used when you want to repeat something until a condition becomes false.
-                </p>
-              </div>
-            </div>
+            <PythonPlayground
+              initialCode={`j = 5
+  while j > 0:
+      print(j)
+      j -= 1`}
+            />
           </CardContent>
         </Card>
 
+        {/* Concept 1: Strings - Guided Format */}
+            <CodeExample
+              title="Speaker Code: Strings"
+              code={`# Example 1: Creating a string\ntext = "Hello Python"\nprint(text)\n\n# Example 2: Indexing (positions start from 0)\nprint(text[0])   # First character\nprint(text[6])   # 7th character\n\n# Example 3: Slicing\nprint(text[0:5])  # characters 0 to 4\nprint(text[6:])   # from 6 to end\n\n# Example 4: String methods\nprint(text.upper())   # HELLO PYTHON\nprint(text.lower())   # hello python\nprint(text.replace("Python", "World"))  # Hello World\n\n# Example 5: String formatting\nname = "Arun"\nage = 16\nprint(f"My name is {name}, I am {age} years old")\n\n# Example 6: Multiline string\nmsg = """This is\na multiline\nstring"""\nprint(msg)`}
+              language="python"
+              codeOutput={`Hello Python\nH\nP\nHello\nPython\nHELLO PYTHON\nhello python\nHello World\nMy name is Arun, I am 16 years old\nThis is\na multiline\nstring`}
+            />
+            <Card className="border-accent/20">
+              <CardHeader>
+                <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Teaching Tips: Strings
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc ml-6 text-muted-foreground">
+                  <li>Indexing → starts at 0.</li>
+                  <li>Slicing → start:end (end not included).</li>
+                  <li>Common methods → .upper(), .lower(), .replace().</li>
+                  <li>{'f"{ }" → formatting values inside string.'}</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-accent/20">
+              <CardHeader>
+                <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Student Practice: Strings
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <PythonPlayground
+                  initialCode={`# 1. Create a string with your name\nname = "_____"\nprint(name)\n\n# 2. Print the first and last letter of your name\nprint(name[_____])   # first\nprint(name[_____])   # last\n\n# 3. Slice the first 3 letters\nprint(name[0:_____])\n\n# 4. Convert to uppercase and lowercase\nprint(name._____)   # uppercase\nprint(name._____)   # lowercase\n\n# 5. Replace one word in string\ntext = "I love Maths"\nprint(text.replace("Maths", "_____"))\n\n# 6. Use f-string for printing\nage = _____\nprint(f"My name is {name}, I am {_____} years old")`}
+                />
+              </CardContent>
+            </Card>
         <CodeExample
-          title="For Loop Examples"
-          code={`# Basic for loop with range
-print("Counting from 1 to 5:")
-for i in range(1, 6):
-    print(f"Count: {i}")
-
-# Iterating over a list
-fruits = ["apple", "banana", "orange", "grape"]
-print("\\nFruits in the basket:")
-for fruit in fruits:
-    print(f"- {fruit}")
-
-# Using enumerate to get index and value
-print("\\nFruits with index:")
-for index, fruit in enumerate(fruits):
-    print(f"{index + 1}. {fruit}")
-
-# Nested loops - multiplication table
-print("\\n3x3 Multiplication Table:")
-for i in range(1, 4):
-    for j in range(1, 4):
-        print(f"{i} x {j} = {i * j}")
-    print()  # Empty line after each row`}
+          title="Break in For Loop"
+          code={`for i in range(5):
+    if i == 3:
+        break
+    print(i)`}
           language="python"
+          codeOutput={`0
+1
+2`}
         />
+        {/* Playground: Practice Continue in For Loop */}
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-lg">
+              Try it Yourself! (Continue in For Loop)
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-2 text-muted-foreground">
+              Change the value to skip and see the output.
+            </p>
+            <PythonPlayground
+              initialCode={`for i in range(5):
+    if i == 2:
+        continue
+    print(i)`}
+            />
+          </CardContent>
+        </Card>
 
         <CodeExample
           title="While Loop Examples"
@@ -108,25 +141,30 @@ for num in range(1, 11):
 
         <Card className="border-secondary/20">
           <CardHeader>
-            <CardTitle className="text-xl bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               String Manipulation
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Strings are sequences of characters used to store and manipulate text data. Python provides many built-in
-              methods for string operations.
+              Strings are sequences of characters used to store and manipulate
+              text data. Python provides many built-in methods for string
+              operations.
             </p>
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-3">
-                <h4 className="font-semibold text-secondary">Common String Methods</h4>
+                <h4 className="font-semibold text-primary/40">
+                  Common String Methods
+                </h4>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <Badge variant="outline">.upper()</Badge> Convert to uppercase
+                    <Badge variant="outline">.upper()</Badge> Convert to
+                    uppercase
                   </li>
                   <li>
-                    <Badge variant="outline">.lower()</Badge> Convert to lowercase
+                    <Badge variant="outline">.lower()</Badge> Convert to
+                    lowercase
                   </li>
                   <li>
                     <Badge variant="outline">.strip()</Badge> Remove whitespace
@@ -141,7 +179,9 @@ for num in range(1, 11):
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-semibold text-secondary">String Formatting</h4>
+                <h4 className="font-semibold text-primary/40">
+                  String Formatting
+                </h4>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Badge variant="outline">f-strings</Badge> Modern formatting
@@ -199,10 +239,28 @@ print(f"Reversed: {text[::-1]}")`}
           language="python"
         />
 
+        {/* Playground: Practice String Slicing */}
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-lg">
+              Try it Yourself! (String Slicing)
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-2 text-muted-foreground">
+              Change the string and slice range.
+            </p>
+            <PythonPlayground
+              initialCode={`word = "HelloWorld"
+print(word[0:5])`}
+            />
+          </CardContent>
+        </Card>
+
         <Quiz moduleId="loops-strings" questions={quizData["loops-strings"]} />
       </div>
     </ModuleContent>
-  )
-}
+  );
+};
 
-export default LoopsStringsPage
+export default LoopsStringsPage;

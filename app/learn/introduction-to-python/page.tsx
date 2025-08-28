@@ -100,14 +100,13 @@ const IntroductionToPythonPage = () => {
           </CardContent>
         </Card>
 
+
+
         <CodeExample
-          title="Your First Python Program"
-          code={`# This is a comment in Python
-print("Hello, World!")
-print("Welcome to Python programming!")`}
+          title="Speaker Code: print() Examples"
+          code={`# Example 1: Simple print\nprint("Hello Students")\n\n# Example 2: Printing multiple values\nprint("My name is", "Arun")\n\n# Example 3: sep argument\nprint("Apple", "Banana", "Cherry", sep=" - ")\n\n# Example 4: end argument\nprint("Good", end=" ")\nprint("Morning")`}
           language="python"
-          codeOutput={`Hello, World!
-Welcome to Python programming!`}
+          codeOutput={`Hello Students\nMy name is Arun\nApple - Banana - Cherry\nGood Morning`}
         />
 
         <Card className="border-accent/20">
@@ -132,18 +131,20 @@ print(f"Area of circle: {area}")`}
         <Card className="border-accent/20">
           <CardHeader>
             <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Try it Yourself!
+              Student Practice: print()
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="mb-2 text-muted-foreground">
-              Use the{" "}
-              <span className="font-mono bg-muted px-1 rounded">print</span>{" "}
-              function to display a message. Change the code below to print your
-              own custom greeting!
-            </p>
+            <div className="mb-2 text-muted-foreground">
+              <strong>Teaching Tips:</strong>
+              <ul className="list-disc ml-6">
+                <li><span className="font-mono bg-muted px-1 rounded">print()</span> shows output on screen.</li>
+                <li><span className="font-mono bg-muted px-1 rounded">sep</span> separates words (default = space).</li>
+                <li><span className="font-mono bg-muted px-1 rounded">end</span> decides how line ends (default = new line <span className="font-mono">\n</span>).</li>
+              </ul>
+            </div>
             <PythonPlayground
-              initialCode={`# Use print to show a message!\nprint("Welcome to Python!")`}
+              initialCode={`# 1. Print your own name\nprint("_____")   # Fill your name\n\n# 2. Print your favorite subject and teacher name in one line\nprint("_____", "_____")\n\n# 3. Use sep to join 3 fruits with "*"\nprint("Mango", "Orange", "Banana", sep="____")\n\n# 4. Use end to keep two words in same line\nprint("Python", end="____")\nprint("Programming")`}
             />
           </CardContent>
         </Card>

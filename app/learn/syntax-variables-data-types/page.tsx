@@ -15,9 +15,6 @@ const SyntaxVariablesDataTypesPage = () => {
         {/* <Card className="border-accent/20">
           <CardHeader>
             <CardTitle className="text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-              Try Python Yourself!
-            </CardTitle>
-          </CardHeader>
           <CardContent>
             <PythonPlayground description="Experiment with Python code and see the output instantly!" />
           </CardContent>
@@ -53,7 +50,6 @@ const SyntaxVariablesDataTypesPage = () => {
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-semibold text-primary">Code Structure</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Badge variant="outline">Line Continuation</Badge> Use \ to continue long lines
@@ -89,7 +85,7 @@ This is outside the if block`}
 
         <Card className="border-secondary/20">
           <CardHeader>
-            <CardTitle className="text-xl bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Variables in Python
             </CardTitle>
           </CardHeader>
@@ -100,7 +96,7 @@ This is outside the if block`}
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-3">
-                <h4 className="font-semibold text-secondary">Variable Rules</h4>
+                <h4 className="font-semibold text-primary/40">Variable Rules</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• Must start with a letter or underscore</li>
                   <li>• Can contain letters, numbers, and underscores</li>
@@ -109,7 +105,7 @@ This is outside the if block`}
                 </ul>
               </div>
               <div className="space-y-3">
-                <h4 className="font-semibold text-secondary">Naming Conventions</h4>
+                <h4 className="font-semibold text-primary/40">Naming Conventions</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• Use snake_case for variables</li>
                   <li>• Use descriptive names</li>
@@ -121,18 +117,29 @@ This is outside the if block`}
           </CardContent>
         </Card>
 
+        <CodeExample
+          title="Assigning & Updating Variables"
+          code={`# Assigning variables\nname = "Arun"\nage = 15\nprint("My name is", name)\nprint("I am", age, "years old")\n\n# Updating variable\nage = 16\nprint("Next year I will be", age)`}
+          language="python"
+          codeOutput={`My name is Arun\nI am 15 years old\nNext year I will be 16`}
+        />
         <Card className="border-accent/20">
           <CardHeader>
             <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Try it Yourself! (Variables)
+              Student Practice: Variables
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="mb-2 text-muted-foreground">
-              Change the values of <span className="font-mono bg-muted px-1 rounded">country</span> and <span className="font-mono bg-muted px-1 rounded">capital</span> and print them using <span className="font-mono bg-muted px-1 rounded">print</span>.
-            </p>
+            <div className="mb-2 text-muted-foreground">
+              <strong>Tips:</strong>
+              <ul className="list-disc ml-6">
+                <li>Variables = containers to store values.</li>
+                <li>Can be updated later.</li>
+                <li>Rules: No spaces, only _ allowed. Cannot start with number.</li>
+              </ul>
+            </div>
             <PythonPlayground
-              initialCode={`country = "India"\ncapital = "New Delhi"\nprint("Country:", country)\nprint("Capital:", capital)`}
+              initialCode={`# 1. Store your school name in a variable and print it\nschool = "_____"\nprint("I study at", _____)\n\n# 2. Store your favorite subject and print it\nsubject = "_____"\nprint("My favorite subject is", _____)\n\n# 3. Update a variable (your current class to next class)\nclass_num = _____   # Fill current class number\nclass_num = _____   # Next year class\nprint("Next year I will be in class", _____)`}
             />
           </CardContent>
         </Card>
@@ -173,7 +180,7 @@ x=0, y=0, z=0`}
 
         <Card className="border-accent/20">
           <CardHeader>
-            <CardTitle className="text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Python Data Types
             </CardTitle>
           </CardHeader>
@@ -185,7 +192,7 @@ x=0, y=0, z=0`}
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-3">
-                <h4 className="font-semibold text-accent">Numeric Types</h4>
+                <h4 className="font-semibold text-primary/40">Numeric Types</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Badge variant="outline">int</Badge> Whole numbers: 42, -10, 0
@@ -198,7 +205,7 @@ x=0, y=0, z=0`}
                   </li>
                 </ul>
 
-                <h4 className="font-semibold text-accent mt-4">Text Type</h4>
+                <h4 className="font-semibold text-primary/40 mt-4">Text Type</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Badge variant="outline">str</Badge> Text strings: "Hello", 'Python'
@@ -231,59 +238,37 @@ x=0, y=0, z=0`}
           </CardContent>
         </Card>
 
+
+
         <CodeExample
-          title="Data Types Examples"
-          code={`# Numeric types
-integer_num = 42
-float_num = 3.14159
-complex_num = 3 + 4j
-
-print(f"Integer: {integer_num}, type: {type(integer_num)}")
-print(f"Float: {float_num}, type: {type(float_num)}")
-print(f"Complex: {complex_num}, type: {type(complex_num)}")
-
-# String type
-text = "Hello, Python!"
-multiline = """This is a
-multiline string"""
-
-print(f"String: {text}, type: {type(text)}")
-
-# Boolean type
-is_python_fun = True
-is_difficult = False
-
-print(f"Boolean: {is_python_fun}, type: {type(is_python_fun)}")
-
-# Sequence types
-my_list = [1, 2, 3, "mixed", True]
-my_tuple = (1, 2, 3)
-my_dict = {"name": "Alice", "age": 25}
-
-print(f"List: {my_list}, type: {type(my_list)}")
-print(f"Tuple: {my_tuple}, type: {type(my_tuple)}")
-print(f"Dictionary: {my_dict}, type: {type(my_dict)}")
-
-# Checking types
-print(f"\nType checking:")
-print(f"Is integer_num an int? {isinstance(integer_num, int)}")
-print(f"Is text a string? {isinstance(text, str)}")
-print(f"Is my_list a list? {isinstance(my_list, list)}")`}
+          title="Speaker Code: Data Types"
+          code={`# Different data types\na = 10          # int\nb = 3.14        # float\nc = "Python"    # string\nd = True        # boolean\ne = 2 + 3j      # complex\n\nprint(a, type(a))\nprint(b, type(b))\nprint(c, type(c))\nprint(d, type(d))\nprint(e, type(e))`}
           language="python"
-          codeOutput={`Integer: 42, type: <class 'int'>
-Float: 3.14159, type: <class 'float'>
-Complex: (3+4j), type: <class 'complex'>
-String: Hello, Python!, type: <class 'str'>
-Boolean: True, type: <class 'bool'>
-List: [1, 2, 3, 'mixed', True], type: <class 'list'>
-Tuple: (1, 2, 3), type: <class 'tuple'>
-Dictionary: {'name': 'Alice', 'age': 25}, type: <class 'dict'>
-
-Type checking:
-Is integer_num an int? True
-Is text a string? True
-Is my_list a list? True`}
+          codeOutput={`10 <class 'int'>\n3.14 <class 'float'>\nPython <class 'str'>\nTrue <class 'bool'>\n(2+3j) <class 'complex'>`}
         />
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Student Practice: Data Types
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="mb-2 text-muted-foreground">
+              <strong>Teaching Tips:</strong>
+              <ul className="list-disc ml-6">
+                <li>Common data types:</li>
+                <li><span className="font-mono bg-muted px-1 rounded">int</span> → whole numbers</li>
+                <li><span className="font-mono bg-muted px-1 rounded">float</span> → decimal numbers</li>
+                <li><span className="font-mono bg-muted px-1 rounded">str</span> → text</li>
+                <li><span className="font-mono bg-muted px-1 rounded">bool</span> → True/False</li>
+                <li><span className="font-mono bg-muted px-1 rounded">complex</span> → a+bj form</li>
+              </ul>
+            </div>
+            <PythonPlayground
+              initialCode={`# 1. Store your age (number) in a variable and print its type\nage = _____\nprint(type(_____))\n\n# 2. Store your height (decimal) and print type\nheight = _____\nprint(type(_____))\n\n# 3. Store your name and print type\nname = "_____"\nprint(type(_____))\n\n# 4. Store True/False if you like Python and print type\nlikes_python = _____\nprint(type(_____))`}
+            />
+          </CardContent>
+        </Card>
 
         <Card className="border-primary/20">
           <CardHeader>

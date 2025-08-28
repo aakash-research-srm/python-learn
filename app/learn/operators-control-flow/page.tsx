@@ -81,105 +81,38 @@ const OperatorsControlFlowPage = () => {
           </CardContent>
         </Card>
 
-        {/* Arithmetic Operators Example */}
-        <CodeExample
-          title="Arithmetic Operations"
-          code={`# Basic arithmetic operations
-a = 10
-b = 3
 
-print(f"Addition: {a} + {b} = {a + b}")
-print(f"Subtraction: {a} - {b} = {a - b}")
-print(f"Multiplication: {a} * {b} = {a * b}")
-print(f"Division: {a} / {b} = {a / b}")
-print(f"Floor Division: {a} // {b} = {a // b}")
-print(f"Modulus: {a} % {b} = {a % b}")
-print(f"Exponentiation: {a} ** {b} = {a ** b}")`}
+
+        {/* Concept 4: Operators - Guided Format */}
+        <CodeExample
+          title="Operators"
+          code={`# Arithmetic operators\nx = 10\ny = 3\nprint("Addition:", x + y)\nprint("Subtraction:", x - y)\nprint("Multiplication:", x * y)\nprint("Division:", x / y)\nprint("Floor Division:", x // y)\nprint("Modulus:", x % y)\nprint("Power:", x ** y)\n\n# Comparison operators\nprint("x > y:", x > y)\nprint("x == y:", x == y)\n\n# Logical operators\na = True\nb = False\nprint("a and b:", a and b)\nprint("a or b:", a or b)\nprint("not a:", not a)`}
           language="python"
-          codeOutput={`Addition: 10 + 3 = 13
-Subtraction: 10 - 3 = 7
-Multiplication: 10 * 3 = 30
-Division: 10 / 3 = 3.3333333333333335
-Floor Division: 10 // 3 = 3
-Modulus: 10 % 3 = 1
-Exponentiation: 10 ** 3 = 1000`}
+          codeOutput={`Addition: 13\nSubtraction: 7\nMultiplication: 30\nDivision: 3.3333333333333335\nFloor Division: 3\nModulus: 1\nPower: 1000\nx > y: True\nx == y: False\na and b: False\na or b: True\nnot a: False`}
         />
-        {/* Playground: Practice arithmetic operators */}
         <Card className="border-accent/20">
           <CardHeader>
-            <CardTitle className="text-lg">
-              Try it Yourself! (Arithmetic)
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Tips: Operators
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="mb-2 text-muted-foreground">
-              Change the values and use{" "}
-              <span className="font-mono bg-muted px-1 rounded">**</span> for
-              power.
-            </p>
-            <PythonPlayground
-              initialCode={`x = 5
-  y = 2
-  print("Power:", x ** y)`}
-            />
+            <ul className="list-disc ml-6 text-muted-foreground">
+              <li>Arithmetic → +, -, *, /, //, %, **</li>
+              <li>Comparison → &lt;, &gt;, ==, !=</li>
+              <li>Logical → and, or, not</li>
+            </ul>
           </CardContent>
         </Card>
-
-        {/* Comparison Operators Example */}
-        <CodeExample
-          title="Comparison Operators"
-          code={`a = 10
-  b = 20
-  print("a < b:", a < b)`}
-          language="python"
-          codeOutput={`a < b: True`}
-        />
-        {/* Playground: Practice comparison operators */}
         <Card className="border-accent/20">
           <CardHeader>
-            <CardTitle className="text-lg">
-              Try it Yourself! (Comparison)
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Student Practice: Operators
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="mb-2 text-muted-foreground">
-              Change the values and use{" "}
-              <span className="font-mono bg-muted px-1 rounded">==</span> for
-              equality.
-            </p>
             <PythonPlayground
-              initialCode={`x = 15
-  y = 15
-  print("x == y:", x == y)`}
-            />
-          </CardContent>
-        </Card>
-
-        {/* Logical Operators Example */}
-        <CodeExample
-          title="Logical Operators"
-          code={`x = True
-  y = False
-  print("x and y:", x and y)`}
-          language="python"
-          codeOutput={`x and y: False`}
-        />
-        {/* Playground: Practice logical operators */}
-        <Card className="border-accent/20">
-          <CardHeader>
-            <CardTitle className="text-lg">
-              Try it Yourself! (Logical)
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="mb-2 text-muted-foreground">
-              Change the value and use{" "}
-              <span className="font-mono bg-muted px-1 rounded">and</span> for
-              logic.
-            </p>
-            <PythonPlayground
-              initialCode={`a = 5
-  print("a > 2 and a < 10:", a > 2 and a < 10)`}
+              initialCode={`# 1. Try arithmetic with your own numbers\na = _____\nb = _____\nprint("Addition:", a + b)\n\n# 2. Check which is bigger: your age or your friend’s age\nmy_age = _____\nfriend_age = _____\nprint("Am I older?", my_age _____ friend_age)\n\n# 3. Use logical operator\nis_student = True\nis_teacher = False\nprint("Student and Teacher:", is_student _____ is_teacher)`}
             />
           </CardContent>
         </Card>

@@ -29,8 +29,8 @@ export const quizData: Record<string, QuizQuestion[]> = {
     {
       id: "intro-4",
       type: "multiple-choice",
-      question: "What will be the output?\\n\\nprint(\"Good\", end=\" \")\\nprint(\"Morning\")",
-      options: ["Good\nMorning", "GoodMorning", "Good Morning", "Error"],
+      question: "What will be the output?\n\nprint(\"Good Morning\")",
+      options: ["Good Morning", "GoodMorning", "Good morning", "Error"],
       correctAnswer: 2,
       explanation: "end=\" \" keeps both words on same line with a space.",
     },

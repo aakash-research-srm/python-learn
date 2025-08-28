@@ -12,7 +12,7 @@ const SyntaxVariablesDataTypesPage = () => {
       title="Syntax, Variables & Data Types"
     >
       <div className="space-y-8">
-        <Card className="border-accent/20">
+        {/* <Card className="border-accent/20">
           <CardHeader>
             <CardTitle className="text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
               Try Python Yourself!
@@ -21,7 +21,7 @@ const SyntaxVariablesDataTypesPage = () => {
           <CardContent>
             <PythonPlayground description="Experiment with Python code and see the output instantly!" />
           </CardContent>
-        </Card>
+        </Card> */}
 
         <Card className="border-primary/20">
           <CardHeader>
@@ -81,6 +81,10 @@ if 5 > 3:
 
 print("This is outside the if block")`}
           language="python"
+          codeOutput={`Five is greater than three
+Ten is greater than five
+This is still inside the first if
+This is outside the if block`}
         />
 
         <Card className="border-secondary/20">
@@ -94,7 +98,6 @@ print("This is outside the if block")`}
               Variables in Python are <span className="bg-muted px-2 py-1 rounded font-mono">containers for storing data values</span>. Python has no command for
               declaring a variable - you create one the moment you first assign a value to it.
             </p>
-
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-3">
                 <h4 className="font-semibold text-secondary">Variable Rules</h4>
@@ -105,7 +108,6 @@ print("This is outside the if block")`}
                   <li>• Cannot use Python keywords</li>
                 </ul>
               </div>
-
               <div className="space-y-3">
                 <h4 className="font-semibold text-secondary">Naming Conventions</h4>
                 <ul className="space-y-2 text-sm">
@@ -116,6 +118,22 @@ print("This is outside the if block")`}
                 </ul>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Try it Yourself! (Variables)
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-2 text-muted-foreground">
+              Change the values of <span className="font-mono bg-muted px-1 rounded">country</span> and <span className="font-mono bg-muted px-1 rounded">capital</span> and print them using <span className="font-mono bg-muted px-1 rounded">print</span>.
+            </p>
+            <PythonPlayground
+              initialCode={`country = "India"\ncapital = "New Delhi"\nprint("Country:", country)\nprint("Capital:", capital)`}
+            />
           </CardContent>
         </Card>
 
@@ -147,6 +165,10 @@ print(f"a={a}, b={b}, c={c}")
 x = y = z = 0
 print(f"x={x}, y={y}, z={z}")`}
           language="python"
+          codeOutput={`x = 10
+x = Now I'm a string!
+a=1, b=2, c=3
+x=0, y=0, z=0`}
         />
 
         <Card className="border-accent/20">
@@ -243,11 +265,24 @@ print(f"Tuple: {my_tuple}, type: {type(my_tuple)}")
 print(f"Dictionary: {my_dict}, type: {type(my_dict)}")
 
 # Checking types
-print(f"\\nType checking:")
+print(f"\nType checking:")
 print(f"Is integer_num an int? {isinstance(integer_num, int)}")
 print(f"Is text a string? {isinstance(text, str)}")
 print(f"Is my_list a list? {isinstance(my_list, list)}")`}
           language="python"
+          codeOutput={`Integer: 42, type: <class 'int'>
+Float: 3.14159, type: <class 'float'>
+Complex: (3+4j), type: <class 'complex'>
+String: Hello, Python!, type: <class 'str'>
+Boolean: True, type: <class 'bool'>
+List: [1, 2, 3, 'mixed', True], type: <class 'list'>
+Tuple: (1, 2, 3), type: <class 'tuple'>
+Dictionary: {'name': 'Alice', 'age': 25}, type: <class 'dict'>
+
+Type checking:
+Is integer_num an int? True
+Is text a string? True
+Is my_list a list? True`}
         />
 
         <Card className="border-primary/20">
@@ -261,7 +296,6 @@ print(f"Is my_list a list? {isinstance(my_list, list)}")`}
               Sometimes you need to convert one data type to another. This process is called{" "}
               <span className="bg-muted px-2 py-1 rounded font-mono">type conversion</span> or <span className="bg-muted px-2 py-1 rounded font-mono">type casting</span>.
             </p>
-
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-3">
                 <h4 className="font-semibold text-primary">Common Conversions</h4>
@@ -280,7 +314,6 @@ print(f"Is my_list a list? {isinstance(my_list, list)}")`}
                   </li>
                 </ul>
               </div>
-
               <div className="space-y-3">
                 <h4 className="font-semibold text-primary">Important Notes</h4>
                 <ul className="space-y-2 text-sm">
@@ -294,45 +327,37 @@ print(f"Is my_list a list? {isinstance(my_list, list)}")`}
           </CardContent>
         </Card>
 
-        <CodeExample
-          title="Type Conversion Examples"
-          code={`# String to number conversion
-age_str = "25"
-age_int = int(age_str)
-price_str = "19.99"
-price_float = float(price_str)
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Try it Yourself! (Type Conversion)
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-2 text-muted-foreground">
+              Practice converting between types! Change the values and see how <span className="font-mono bg-muted px-1 rounded">int()</span>, <span className="font-mono bg-muted px-1 rounded">float()</span>, <span className="font-mono bg-muted px-1 rounded">str()</span>, and <span className="font-mono bg-muted px-1 rounded">bool()</span> work.
+            </p>
+            <PythonPlayground
+              initialCode={`age_str = "25"\nage_int = int(age_str)\nprint("String to int:", age_int)\nprice_str = "19.99"\nprice_float = float(price_str)\nprint("String to float:", price_float)\nnumber = 42\nnumber_str = str(number)\nprint("Number to string:", number_str)\nprint("Boolean conversions:")\nprint(bool(1))\nprint(bool(0))\nprint(bool("hello"))\nprint(bool(""))`}
+            />
+          </CardContent>
+        </Card>
 
-print(f"String '{age_str}' to int: {age_int}")
-print(f"String '{price_str}' to float: {price_float}")
-
-# Number to string conversion
-number = 42
-number_str = str(number)
-print(f"Number {number} to string: '{number_str}'")
-
-# Boolean conversions
-print(f"\\nBoolean conversions:")
-print(f"bool(1): {bool(1)}")
-print(f"bool(0): {bool(0)}")
-print(f"bool('hello'): {bool('hello')}")
-print(f"bool(''): {bool('')}")
-print(f"bool([1, 2, 3]): {bool([1, 2, 3])}")
-print(f"bool([]): {bool([])}")
-
-# Float to int (loses decimal part)
-pi = 3.14159
-pi_int = int(pi)
-print(f"\\nFloat {pi} to int: {pi_int}")
-
-# Automatic type conversion in operations
-result = 10 + 3.5  # int + float = float
-print(f"10 + 3.5 = {result} (type: {type(result)})")
-
-# Input always returns string
-# user_input = input("Enter a number: ")
-# number = int(user_input)  # Convert to int for math operations`}
-          language="python"
-        />
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Try it Yourself! (Data Types)
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-2 text-muted-foreground">
+              Assign values to each variable and print them. Try changing the values and types!
+            </p>
+            <PythonPlayground
+              initialCode={`y = 25  # Integer\nmarks = 88.5  # Float\nfruit = "Mango"  # String\nstatus = False  # Boolean\nnum = 5 + 7j  # Complex\n\nprint("Another Integer:", y)\nprint("Float Marks:", marks)\nprint("Favorite Fruit:", fruit)\nprint("Status:", status)\nprint("Another Complex:", num)`}
+            />
+          </CardContent>
+        </Card>
 
         <Quiz moduleId="syntax-variables-data-types" questions={quizData["syntax-variables-data-types"]} />
       </div>

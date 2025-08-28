@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { useProgress } from "./progress-provider"
 import { usePathname } from "next/navigation"
 import { CheckCircle, Menu, Home, BarChart3, BookOpen, Sun, Moon } from "lucide-react"
-import { useTheme } from "./theme-provider"
 import Link from "next/link"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
@@ -17,17 +16,6 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   
-  // Safe theme access with fallback
-  let theme: "light" | "dark" | "system" = "light"
-  let setTheme: (theme: "light" | "dark" | "system") => void = () => {}
-  
-  try {
-    const themeContext = useTheme()
-    theme = themeContext.theme
-    setTheme = themeContext.setTheme
-  } catch {
-    // Fallback for SSR or when provider is not available
-  }
 
   useEffect(() => {
     setMounted(true)
@@ -149,24 +137,6 @@ export function Navigation() {
       </nav>
 
       <div className="px-4 py-4 border-t border-border">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="w-full justify-start gap-2"
-        >
-          {mounted ? (
-            <>
-              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              {theme === "dark" ? "Light Mode" : "Dark Mode"}
-            </>
-          ) : (
-            <>
-              <Sun className="h-4 w-4" />
-              Toggle Theme
-            </>
-          )}
-        </Button>
         <p className="text-xs text-muted-foreground mt-3 text-center">Python Learn - Interactive Learning Platform</p>
       </div>
     </>

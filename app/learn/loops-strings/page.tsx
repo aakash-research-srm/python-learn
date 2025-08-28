@@ -7,9 +7,7 @@ import { Badge } from "@/components/ui/badge";
 
 const LoopsStringsPage = () => {
   return (
-    <ModuleContent
-      title="Loops & Strings"
-    >
+    <ModuleContent title="Loops & Strings">
       <div className="space-y-8">
         <Card className="border-primary/20">
           <CardHeader>
@@ -39,39 +37,39 @@ const LoopsStringsPage = () => {
         </Card>
 
         {/* Concept 1: Strings - Guided Format */}
-            <CodeExample
-              title="Speaker Code: Strings"
-              code={`# Example 1: Creating a string\ntext = "Hello Python"\nprint(text)\n\n# Example 2: Indexing (positions start from 0)\nprint(text[0])   # First character\nprint(text[6])   # 7th character\n\n# Example 3: Slicing\nprint(text[0:5])  # characters 0 to 4\nprint(text[6:])   # from 6 to end\n\n# Example 4: String methods\nprint(text.upper())   # HELLO PYTHON\nprint(text.lower())   # hello python\nprint(text.replace("Python", "World"))  # Hello World\n\n# Example 5: String formatting\nname = "Arun"\nage = 16\nprint(f"My name is {name}, I am {age} years old")\n\n# Example 6: Multiline string\nmsg = """This is\na multiline\nstring"""\nprint(msg)`}
-              language="python"
-              codeOutput={`Hello Python\nH\nP\nHello\nPython\nHELLO PYTHON\nhello python\nHello World\nMy name is Arun, I am 16 years old\nThis is\na multiline\nstring`}
+        <CodeExample
+          title="Strings"
+          code={`# Example 1: Creating a string\ntext = "Hello Python"\nprint(text)\n\n# Example 2: Indexing (positions start from 0)\nprint(text[0])   # First character\nprint(text[6])   # 7th character\n\n# Example 3: Slicing\nprint(text[0:5])  # characters 0 to 4\nprint(text[6:])   # from 6 to end\n\n# Example 4: String methods\nprint(text.upper())   # HELLO PYTHON\nprint(text.lower())   # hello python\nprint(text.replace("Python", "World"))  # Hello World\n\n# Example 5: String formatting\nname = "Arun"\nage = 16\nprint(f"My name is {name}, I am {age} years old")\n\n# Example 6: Multiline string\nmsg = """This is\na multiline\nstring"""\nprint(msg)`}
+          language="python"
+          codeOutput={`Hello Python\nH\nP\nHello\nPython\nHELLO PYTHON\nhello python\nHello World\nMy name is Arun, I am 16 years old\nThis is\na multiline\nstring`}
+        />
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Teaching Tips: Strings
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="list-disc ml-6 text-muted-foreground">
+              <li>Indexing → starts at 0.</li>
+              <li>Slicing → start:end (end not included).</li>
+              <li>Common methods → .upper(), .lower(), .replace().</li>
+              <li>{'f"{ }" → formatting values inside string.'}</li>
+            </ul>
+          </CardContent>
+        </Card>
+        <Card className="border-accent/20">
+          <CardHeader>
+            <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Strings
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <PythonPlayground
+              initialCode={`# 1. Create a string with your name\nname = "_____"\nprint(name)\n\n# 2. Print the first and last letter of your name\nprint(name[_____])   # first\nprint(name[_____])   # last\n\n# 3. Slice the first 3 letters\nprint(name[0:_____])\n\n# 4. Convert to uppercase and lowercase\nprint(name._____)   # uppercase\nprint(name._____)   # lowercase\n\n# 5. Replace one word in string\ntext = "I love Maths"\nprint(text.replace("Maths", "_____"))\n\n# 6. Use f-string for printing\nage = _____\nprint(f"My name is {name}, I am {_____} years old")`}
             />
-            <Card className="border-accent/20">
-              <CardHeader>
-                <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Teaching Tips: Strings
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc ml-6 text-muted-foreground">
-                  <li>Indexing → starts at 0.</li>
-                  <li>Slicing → start:end (end not included).</li>
-                  <li>Common methods → .upper(), .lower(), .replace().</li>
-                  <li>{'f"{ }" → formatting values inside string.'}</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-accent/20">
-              <CardHeader>
-                <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Student Practice: Strings
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <PythonPlayground
-                  initialCode={`# 1. Create a string with your name\nname = "_____"\nprint(name)\n\n# 2. Print the first and last letter of your name\nprint(name[_____])   # first\nprint(name[_____])   # last\n\n# 3. Slice the first 3 letters\nprint(name[0:_____])\n\n# 4. Convert to uppercase and lowercase\nprint(name._____)   # uppercase\nprint(name._____)   # lowercase\n\n# 5. Replace one word in string\ntext = "I love Maths"\nprint(text.replace("Maths", "_____"))\n\n# 6. Use f-string for printing\nage = _____\nprint(f"My name is {name}, I am {_____} years old")`}
-                />
-              </CardContent>
-            </Card>
+          </CardContent>
+        </Card>
         <CodeExample
           title="Break in For Loop"
           code={`for i in range(5):
@@ -122,21 +120,43 @@ while password != "python123" and attempts < max_attempts:
     attempts += 1
     
     if password == "python123":
-        print("Access granted!")
+      print("Access granted!")
     elif attempts < max_attempts:
-        print("Incorrect password. Try again.")
+      print("Incorrect password. Try again.")
     else:
-        print("Too many failed attempts. Access denied.")
+      print("Too many failed attempts. Access denied.")
 
 # Break and continue
 print("\\nNumbers 1-10, skipping 5:")
 for num in range(1, 11):
     if num == 5:
-        continue  # Skip 5
+  continue  # Skip 5
     if num == 8:
-        break     # Stop at 8
+  break     # Stop at 8
     print(num)`}
           language="python"
+          codeOutput={`While loop counting:
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+
+# (User input validation output depends on user input, typically:)
+Enter password (Attempt 1/3): 
+Incorrect password. Try again.
+Enter password (Attempt 2/3): 
+Incorrect password. Try again.
+Enter password (Attempt 3/3): 
+Too many failed attempts. Access denied.
+
+Numbers 1-10, skipping 5:
+1
+2
+3
+4
+6
+7`}
         />
 
         <Card className="border-secondary/20">
@@ -237,6 +257,27 @@ print(f"Last 3 chars: {text[-3:]}")
 print(f"Every 2nd char: {text[::2]}")
 print(f"Reversed: {text[::-1]}")`}
           language="python"
+          codeOutput={`Original: 'Python Programming'
+Length: 18
+Uppercase: PYTHON PROGRAMMING
+Lowercase: python programming
+
+Original: '  Hello, World!  '
+Stripped: 'Hello, World!'
+Replaced: '  Hello, Python!  '
+
+Words: ['Python', 'is', 'awesome', 'and', 'powerful']
+Joined with '-': Python-is-awesome-and-powerful
+
+Student: Alice
+Age: 25
+Score: 95.7%
+
+String: Python
+First 3 chars: Pyt
+Last 3 chars: hon
+Every 2nd char: Pto
+Reversed: nohtyP`}
         />
 
         {/* Playground: Practice String Slicing */}

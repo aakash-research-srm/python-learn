@@ -104,8 +104,8 @@ export const quizData: Record<string, QuizQuestion[]> = {
       id: "syntax-8",
       type: "multiple-choice",
       question: "Which of the following represents a boolean value?",
-      options: ["True", "True", "1", "Both B and C"],
-      correctAnswer: 3,
+      options: ["True", "False", "1", "All of the above"],
+      correctAnswer: 4,
       explanation: "Python True = 1, False = 0.",
     },
     {
